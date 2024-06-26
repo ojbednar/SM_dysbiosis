@@ -1,0 +1,209 @@
+
+###HEATMAP####
+#antibio2
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("antibio2")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+antibio2<- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#feed
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("feedhour")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+feed<- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#neu
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("neuabs")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+neu <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#wbc
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("wbc")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+wbc <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#ho-1
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("ho1_pl1")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+ho <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+
+#hyper_uri
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("hyper_uri")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+uri <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#heatmap
+h <- rbind(antibio2, feed, neu, wbc, ho, uri) # bind all variables vertically
+h <- h %>% filter(rank == "Genus")#filter to only Genus
+h$taxon <- sub('^G:', '', h$taxon)#remove prefix
+h$taxon <- reorder(h$taxon,h$t.statistic)#order by significance
+
+
+library(viridis)
+library(ggplot2)
+p<-ggplot(h, aes(term, taxon, fill= t.statistic)) + 
+  # scale_x_discrete(limits=(h$term)[order(h$t.statistic)]) + 
+  #scale_y_discrete(limits=(h$taxon)[order(h$t.statistic)]) +
+  geom_tile() 
+p <- p +scale_fill_distiller(palette = 'RdBu') + geom_text(aes(label=if_else(p.value<0.05, "*", " "))) +  coord_fixed(ratio=0.1) + 
+  scale_x_discrete(expand = c(-1,1)) + theme_grey()
+p
+ggsave("ordered_factors_contributing_w_antibio2.png", plot = p)
+
+#####
+#enr_sma
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("enr_sma")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+sev_anem<- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#lacidosis
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("enr_cm")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+coma<- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#lactic acidosis
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("lacidosis")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+lacid <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#haki
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("haki")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+haki <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#acidotic
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("acidotic")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+acidot <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+
+#intestinal injury
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("tff3_inj")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+tff3 <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+#heatmap
+h <- rbind(sev_anem, coma, lacid, acidot, haki, tff3) # bind all variables vertically
+h <- h %>% filter(rank == "Genus")#filter to only Genus
+h$taxon <- sub('^G:', '', h$taxon)#remove prefix
+h$taxon <- reorder(h$taxon,h$t.statistic)#order by significance
+
+
+library(viridis)
+library(ggplot2)
+p<-ggplot(h, aes(term, taxon, fill= t.statistic)) + 
+  # scale_x_discrete(limits=(h$term)[order(h$t.statistic)]) + 
+  #scale_y_discrete(limits=(h$taxon)[order(h$t.statistic)]) +
+  geom_tile() 
+p <- p +scale_fill_distiller(palette = 'RdBu') + geom_text(aes(label=if_else(p.value<0.05, "*", " "))) +  coord_fixed(ratio=0.1) + 
+  scale_x_discrete(expand = c(-1,1)) + theme_grey()
+p
+ggsave("ordered_complications_heatmap.png", plot = p)
+
