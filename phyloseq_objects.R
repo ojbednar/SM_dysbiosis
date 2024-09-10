@@ -29,7 +29,8 @@ meta_new <- meta_new %>% select(-SampleID) %>% mutate(Group = case_when(group ==
         tce_mort_com, akd, inpatsepsisno6m, hgb1m, il6_se1, tnfa_se1, il17a_se1, il17e_se1, paracetamol, paracet1, hgbbase, 
         stool_dt0, doe, feedhour, drinhour, outpatmal6m, neu, neuabs, hm_se1, ho1_pl1, blcx_pos, 
         inpatmal1stdaysto6m, DNA, wbc, icc1q_se1, hrp2_pl1, follow12date, pi0, ang1_pl1, ang2_pl1, psel_pl1, 
-        icam_pl1, vcam_pl1, crp_pl1, esel_pl1, il1ra_se1, pct_pl1, stool0, dod, trem_pl1, inpatsepsis12m, deathdaysto12m)
+        icam_pl1, vcam_pl1, crp_pl1, esel_pl1, il1ra_se1, pct_pl1, stool0, dod, trem_pl1, inpatsepsis12m, deathdaysto12m, hapt_pl1, hb_se1, blcx_result, 
+        blcx_result_spec, age_ext, othantibi, cysc_pl1, whz0, haz0, waz0,ferr_pl1, ferr_pl3, hpxn_se1, cd163_pl1)
 sample_meta <- sample_data(meta_new) 
 asv <- merge_phyloseq(asv, sample_meta) #create phyloseq object
 
@@ -272,3 +273,82 @@ krak_0 <- krak %>% ps_filter(month == 0) %>%
                                   date_to_stool == 5 ~ "day 5",
                                   date_to_stool == 6 ~ "day 6",
                                   date_to_stool >= 7 ~ "day 7+"))
+### for 1 month samples
+remain <- read.csv("~/Library/CloudStorage/OneDrive-IndianaUniversity/NDI_16S/NDI_remaining_or_follow_up_samples.csv")
+meta <- remain
+
+meta_new <- left_join(meta, new, by = "studyid") %>% as.data.frame #merge stool and study metadata
+rownames(meta_new) <- meta_new$SampleID 
+meta_new <- meta_new %>% select(-SampleID) %>% mutate(Group = case_when(group == 1 ~ "CM",
+                                                                        group == 2 ~ "RDS",
+                                                                        group == 3 ~ "M/S",
+                                                                        group == 4 ~ "SMA",
+                                                                        group == 5 ~ "Prostration",
+                                                                        group == 6 & pcr_fal0 == 0 ~ "PfNeg",
+                                                                        group == 6 & pcr_fal0 == 1 ~ "PfPos")) %>%
+  select(studyid, uric_se1, month, Group, group, urinehx, acidosis, ldh_se1, ifabp_se1,
+         uremia, mod_kidney, mod_brain, mod_liver, mod_heart,mod_blood, mod_lung, mod_multi, mod_systems, sysbp_low, acidotic, sepsis, crea_se1, krt_indic, ngal_pl1, ngal_pl3,
+         ceftri, ceftri1, ceftri2, antibiot2, antibiot1, antibio2, chloram, cipro, xpen, gentam, ceftri,flagyl, cotrimoxazole, il10_se1, il2_se1,
+         il17a_se1, il1b_se1, plt, ifabp_se1, sevaki0, akd_overall, ngal_highrisk0, akd, hrp2_pl1, doe, stool_dt0,
+         chloram1, cipro1, xpen1, gentam1, flagyl1, amoxyl, lacidosis, scd14_pl1, lbp_pl1, tff3_pl1, outcome, sm_death12m,
+         akistage0, lactate0hr, death, inpathemosv12m, inpathemosvno12m, site, sex, age, doe, hbsgt, haki, sickvmal6m,
+         inpathemosvno12m, hyperpa0, thrombocytopenia, coma, sev_anemia, jaundice_adm, inpatany6m, inpatmal6m, shock,
+         enr_hb, coldperi, sirscriteria, inpatmalno12m, inpatmalno6m, inpatmal12m, inpatmalno12m, inpatany12m, tbili_se1, enr_sma, enr_cm, hypoglycemia, iglucose,
+         respdist, aniongap, ph, tooweak, convulhx, diarr, cough, fever, sickvhemosv12m, sickvhemosv6m, leukocytosis,
+         tce_mort_com, akd, inpatsepsisno6m, hgb1m, il6_se1, tnfa_se1, il17a_se1, il17e_se1, paracetamol, paracet1, hgbbase, 
+         stool_dt0, doe, feedhour, drinhour, outpatmal6m, neu, neuabs, hm_se1, ho1_pl1, blcx_pos, 
+         inpatmal1stdaysto6m, wbc, icc1q_se1, hrp2_pl1, follow12date, pi0, ang1_pl1, ang2_pl1, psel_pl1, 
+         icam_pl1, vcam_pl1, crp_pl1, esel_pl1, il1ra_se1, pct_pl1, stool0, dod, trem_pl1, inpatsepsis12m, deathdaysto12m, hapt_pl1, hb_se1)
+sample_meta <- sample_data(meta_new) 
+asv <- merge_phyloseq(asv, sample_meta) #create phyloseq object
+
+#clean up tax table
+tax_table(asv)[, colnames(tax_table(asv))] <- gsub(tax_table(asv)[, colnames(tax_table(asv))],     pattern = "[a-z]__", replacement = "")
+colnames(tax_table(asv))[1:8] <- c("Domain",  "Phylum",  "Class",   "Order",   "Family",  "Genus",   "Species", "Strain")
+colnames(tax_table(asv))
+asv <- tax_fix(asv, verbose = FALSE)
+asv <- tax_rename(asv, rank = "Species") %>% ps_mutate(sick = Group %in% c("CM", "SMA", "RDS", "M/S", "Prostration"))
+
+#create necessary phyloseq objects by filtering based on metadata
+asv_1 <- asv %>% ps_filter(month == 1) %>%
+  ps_mutate(hyper_uri = case_when(uric_se1 > 7 ~ 1,
+                                  uric_se1 <= 7 ~ 0),
+            high_ldh = case_when(ldh_se1 > 400 ~ 1,
+                                 ldh_se1 <=400 ~ 0),
+            ifabp_inj = case_when(ifabp_se1 > 3.54 ~ 1,
+                                  ifabp_se1 <= 3.54 ~ 0),
+            sCD14_inj = case_when(scd14_pl1 > 8.2 ~ 1, 
+                                  scd14_pl1 <= 8.2 ~ 0),
+            lbp_inj = case_when(lbp_pl1 > 50 ~ 1,
+                                lbp_pl1 <= 50 ~ 0),
+            tff3_inj = case_when(tff3_pl1 >= 4.078 ~ 1,
+                                 tff3_pl1 < 4.078 ~ 0),
+            int_inj = case_when(tff3_pl1 >= 4.087 | ifabp_se1 >= 15.433 ~ 1,
+                                tff3_pl1 < 4.087 | ifabp_se1 < 15.433 ~ 0),
+            research_mal = case_when(plt <= 150 & hrp2_pl1 >= 1000 ~ "RM",
+                                     #plt > 150 & hrp2_pl1 < 1000 ~ "CM",
+                                     .default = "other"),
+            h_uric_and_aki = case_when(hyper_uri == "yes" & haki ==1 ~ "both",
+                                       hyper_uri == "no" & haki == 0 ~ "neither"),
+            hus = case_when(plt <= 150 & haki == 1 & ldh_se1 > 450 & hgbbase < 10 ~ 1,
+                            .default = 0),
+            hyperbili = case_when(tbili_se1 > 3 ~ "elevated",
+                                  tbili_se1 <= 3 ~ "not elevated"),
+            hypoglu = case_when(iglucose < 3.9 ~ "hypoglu",
+                                iglucose >= 3.9 ~ "not hypoglu"),
+            elev_anion = case_when(aniongap > 12 ~ "yes",
+                                   aniongap <= 12 ~ "no"),
+            lowph = case_when(ph < 7.35 ~ "yes",
+                              ph >= 7.35 ~ "no"),
+            date_to_stool = (as.Date(stool_dt0, format="%d/%m/%Y") - as.Date(doe, format="%d/%m/%Y")),
+            stool_day = case_when(date_to_stool == 0 ~ "day 0",
+                                  date_to_stool == 1 ~ "day 1",
+                                  date_to_stool == 2 ~ "day 2",
+                                  date_to_stool == 3 ~ "day 3",
+                                  date_to_stool == 4 ~ "day 4",
+                                  date_to_stool == 5 ~ "day 5",
+                                  date_to_stool == 6 ~ "day 6",
+                                  date_to_stool == 7 ~ "day 7",
+                                  date_to_stool > 7 ~ "past one week")
+  )
+
