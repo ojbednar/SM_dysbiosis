@@ -2,34 +2,142 @@ library(corncob)
 library(tidyverse)
 library(microViz)
 library(gt)
+library(gtsummary)
+library(gtable)
 
 #demographics table
+new <- read.csv("full_study.csv")
+new <- new %>% 
+  mutate(doe_date = dmy(doe),
+         admission_month = month(doe_date),
+         Sex = case_when(sex ==1 ~ "Male",
+                         sex ==2 ~ "Female"),
+         Site = case_when(site == 1 ~ "Mulago",
+                          site == 2 ~ "Jinja"),
+         hbsgt_bin = case_when(hbsgt %in% c(1,2) ~ "AA/AS",
+                               hbsgt == 3 ~ "SS"),
+         age_in_months = round(age * 12),
+         prior_abx_oral = case_when(amoxyl == 1 ~ 1,
+                                    cipro == 1 ~ 1,
+                                    cotrimoxazole == 1 ~ 1,
+                                    flagyl == 1 ~ 1,
+                                    othantibi == "Ampiclox" ~ 1,
+                                    othantibi == "Azithromycin syrup" ~ 1,
+                                    othantibi == "Cefladriox" ~ 1,
+                                    othantibi == "Cephalexin" ~ 1,
+                                    othantibi == "Doxycline" ~ 1,
+                                    othantibi == "Erythromycin" ~ 1,
+                                    .default = 0),
+         date_to_stool = (as.Date(stool_dt0, format = "%d/%m/%Y") - as.Date(doe, format="%d/%m/%Y")),
+         stool_day = case_when(date_to_stool == 0 ~ "day 0",
+                               date_to_stool == 1 ~ "day 1",
+                               date_to_stool == 2 ~ "day 2",
+                               date_to_stool == 3 ~ "day 3",
+                               date_to_stool == 4 ~ "day 4",
+                               date_to_stool == 5 ~ "day 5",
+                               date_to_stool == 6 ~ "day 6",
+                               date_to_stool == 7 ~ "day 7",
+                               date_to_stool > 7 ~ "past one week",
+                               .default = "unknown"),
+         sick = case_when(group %in% c(1,2,3,4,5) ~ "SM",
+                          group == 6 ~ "CC")
+  ) 
+full <- new %>% select(sick, age_in_months, Sex, Site, admission_month, haz0, waz0, hbsgt_bin) %>%
+  tbl_summary(by="sick",
+              missing_text = "(Missing)") %>%
+  add_p() 
+full %>% as_gt() %>% gtsave("full_NDI_demographics.docx")
+asv_sick <- asv_sick %>% ps_mutate(prior_abx_oral = case_when(amoxyl == 1 ~ 1,
+                                                              cipro == 1 ~ 1,
+                                                              cotrimoxazole == 1 ~ 1,
+                                                              flagyl == 1 ~ 1,
+                                                              othantibi == "Ampiclox" ~ 1,
+                                                              othantibi == "Azithromycin syrup" ~ 1,
+                                                              othantibi == "Cefladriox" ~ 1,
+                                                              othantibi == "Cephalexin" ~ 1,
+                                                              othantibi == "Doxycline" ~ 1,
+                                                              othantibi == "Erythromycin" ~ 1,
+                                                              .default = 0
+))
 plot_data <- asv_0 %>%
-  tax_fix() %>%
-  tax_transform("compositional", rank = "Family") %>%
+  tax_fix() %>% 
+  tax_transform("compositional", rank = "Genus") %>%
   tax_transform("log", zero_replace = "halfmin", chain = TRUE) %>%
   ps_get() %>%
-  ps_otu2samdat() %>% 
+  ps_otu2samdat() %>% # adds Parabacteroides as sample data!
   samdat_tbl()
-dem_data <- plot_data %>% select(age, sex, site, sick, antibio2, stool_day) %>%
-  mutate(sex = case_when(sex == 1 ~ "Male",
-                         sex == 2 ~ "Female"),
-         site = case_when(site == 1 ~ "Mulago",
+plot_data <- plot_data %>%
+  mutate(sick = case_when(group %in% c(1,2,3,4,5) ~ "SM",
+                          group == 6 ~ "CC"),
+         doe_date = dmy(doe),
+         admission_month = month(doe_date),
+         Sex = case_when(sex ==1 ~ "Male",
+                         sex ==2 ~ "Female"),
+         Site = case_when(site == 1 ~ "Mulago",
                           site == 2 ~ "Jinja"),
-         sick = case_when(sick == TRUE ~ "SM",
-                          sick == FALSE ~ "CC")) %>%
-  gt(rows_label(age = md("**Age**"),
-               site = md("**Site**"),
-               antibio2 = md("**Prior Antibiotics**"),
-               stool_day = md("Day of stool collection post admission")),
-    groupname_col = "category"
-  ) |> 
-  tab_header(
-    title = "x.x: Demographic Characteristics",
-    subtitle = "x.x.x: Demographic Characteristics - ITT Analysis Set"
+         hbsgt_bin = case_when(hbsgt %in% c(1,2) ~ "AA/AS",
+                               hbsgt == 3 ~ "SS"),
+         age_in_months = round(age * 12),
+         prior_abx_oral = case_when(amoxyl == 1 ~ 1,
+                                    cipro == 1 ~ 1,
+                                    cotrimoxazole == 1 ~ 1,
+                                    flagyl == 1 ~ 1,
+                                    othantibi == "Ampiclox" ~ 1,
+                                    othantibi == "Azithromycin syrup" ~ 1,
+                                    othantibi == "Cefladriox" ~ 1,
+                                    othantibi == "Cephalexin" ~ 1,
+                                    othantibi == "Doxycline" ~ 1,
+                                    othantibi == "Erythromycin" ~ 1,
+                                    .default = 0))
+rRNA <- plot_data %>% select(sick, age_in_months, Sex, Site, admission_month, date_to_stool, prior_abx_oral, haz0, waz0, hbsgt_bin) %>%
+  tbl_summary(by="sick",
+              missing_text = "(Missing)") %>%
+  add_p() 
+rRNA %>% as_gt() %>% gtsave("asv_0_NDI_demographics.docx")
+
+wgs_ids <- wgs_gene_0$studyid
+wgs <- plot_data %>% filter(studyid %in% wgs_ids)
+WGS <- wgs %>% select(sick, age_in_months, Sex, Site, admission_month, date_to_stool, haz0, waz0, hbsgt_bin) %>%
+  tbl_summary(by="sick",
+              digits = all_continuous() ~ 2,
+              missing_text = "(Missing)") %>%
+  add_p() 
+WGS %>% as_gt() %>% gtsave("wgs_NDI_demographics.docx")
+
+#demographic plot
+library(ggthemes)
+new <- read_csv("NDI_Analytic_20240405.csv") 
+new <- new %>%
+  mutate(sick = case_when(group == 6 ~ FALSE,
+                          group != 6 ~ TRUE))
+dem <- ggplot(new, aes(x=age,fill=as.factor(sick))) +
+  geom_dotplot(binaxis = "x", stackgroups = TRUE, binwidth = 0.08, method = "histodot") +
+  scale_y_continuous(NULL, breaks = NULL) + xlim(0,4)+
+  scale_fill_manual(values = c("blue", "red")) +
+  theme_clean() 
+dem
+ggsave("demographics.png", dem, width = 4, height = 3, dpi = 1200, device = "png")
+
+#table for stool collection
+meta_sm <- meta_map_n %>% select(studyid, X12mo_sample, Group, group, doe, stool_dt0, dod, stool0) %>% 
+  filter(X12mo_sample == 0, group != 6) %>% 
+  mutate(date_to_stool = (as.Date(stool_dt0, format="%d/%m/%Y") - as.Date(doe, format="%d/%m/%Y")),
+         stool_day = case_when(date_to_stool == 0 ~ "day 0",
+                               date_to_stool == 1 ~ "day 1",
+                               date_to_stool == 2 ~ "day 2",
+                               date_to_stool == 3 ~ "day 3",
+                               date_to_stool == 4 ~ "day 4",
+                               date_to_stool == 5 ~ "day 5",
+                               date_to_stool == 6 ~ "day 6",
+                               date_to_stool == 7 ~ "day 7",
+                               date_to_stool > 7 ~ "past one week",
+                               date_to_stool == NA ~ "missing"),
+         stool_to_discharge = (as.Date(stool_dt0, format="%d/%m/%Y") - as.Date(dod, format="%d/%m/%Y"))
   )
 
+table(meta_sm$stool_day)
 
+#Differential abundance tables
 
 ccvsm <- asv_0 %>%
   tax_fix() %>%
@@ -1182,6 +1290,27 @@ ccvsm_stats_out <- ccvsm_stats %>%
 
 gtsave(ccvsm_stats_out, "DA_16S_SM_tff3_pl1_genus.docx")
 
+#blood culture tables
+cul_pos <- new %>% filter(blcx_pos == 1) %>% 
+  mutate(blcx_bact = case_when(blcx_result == 1 ~"Staphylococcus aureus",
+                               blcx_result ==2~"Coagulase-negative staphylococcus",
+                               blcx_result ==3~"Salmonella, non-typhi",
+                               blcx_result ==4~"Other gram-negative bacteria",
+                               blcx_result ==5~"Other gram-positive bacteria",
+                               blcx_result ==6~"Bacillus spp",
+                               blcx_result ==7~'Corynebacterium',
+                               blcx_result ==8~'Enterococcus',
+                               blcx_result ==9~'Echerichia coli',
+                               blcx_result ==10~'Micrococcus spp',
+                               blcx_result ==11~'Proteus mirabilis',
+                               blcx_result ==12~'Salmonella, typhi'))
+
+cul_pos_new <- cul_pos %>% filter(blcx_pos == 1) %>% select(studyid, blcx_result, blcx_bact, blcx_result_spec) %>%
+  mutate(blcx_family = case_when(blcx_result %in% c(3,9,11,12) | blcx_result_spec %in% c("Enterobacter spp", "Coliforms", "Citrobacter, freundi", "Escherichia coli, Acinetobacter spp") ~ "Enterobacteriaceae",
+                                 blcx_result %in% c(1, 2) ~ "Staphylococcaceae",
+                                 blcx_result == 8 ~ "Enterococcaceae",
+                                 .default = "other")
+  )
 #death
 sick <- asv_sick %>%
   tax_fix() %>%

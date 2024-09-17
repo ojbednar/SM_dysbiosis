@@ -1,7 +1,11 @@
 
-
 ##barplots###
 #family
+asv <- read.csv("ndi_asv.rds")
+asv_0 <- asv %>% ps_filter(month == 0)
+readRDS(krak_0, "krak_0.RDS")
+readRDS(metaphlan_0, "krak_0.RDS")
+
 ccvsm_barplot <- asv_0 %>%
   phyloseq::merge_samples(group = "sick") %>%
   comp_barplot(tax_level = "Family", bar_width = 0.8, n_taxa = 8, tax_order = c("Enterobacteriaceae","Enterococcaceae",  
@@ -64,51 +68,9 @@ death_barplot_1 <- asv_1 %>% ps_filter(month ==1) %>%
                                                                                 "Blautia", "Ruminococcus", "Roseburia")) +
   labs(x= NULL, y = NULL, title = "Enrollement")
 ggsave("death_genus_month_1.png", death_barplot_1, width = 3, height =3.5 , dpi = 1200, device = "png")
+
 library(gridExtra)
 both <- grid.arrange(ccvsm_barplot, ccvsm_barplot_12, ncol = 2)
 ggsave("ccvsm_genus_enroll_v_12m.png", both, width = 8, height =6 , dpi = 1200, device = "png")
 
-##deathplot
-death_barplot <- asv_sick %>%
-  ps_select(sick, inpathemosvno12m, hyperpa0, Group, thrombocytopenia, enr_cm, enr_sma, haki,
-            tooweak, respdist, acidosis, jaundice_adm, convulhx, lowph, hyperbili, hypoglu, sick, 
-            stool_dt0, doe, antibio2, antibiot1, antibiot2, sickvmal6m, inpatmal6m, feedhour, tff3_inj, hyper_uri, death) %>%
-  phyloseq::merge_samples(group = "death") %>%
-  comp_barplot(tax_level = "Genus", bar_width = 0.8, tax_order = c("Escherichia", "Shigella", "Enterobacter", "Bacteroides")) +
-  labs(x= NULL, y = NULL, title = "death")
-ggsave("genus_sick_death.png", death_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
 
-death_barplot <- asv_sick %>% ps_mutate(anemia = case_when(hgbbase <= 7 ~ 1, .default = 0)) %>%
-  phyloseq::merge_samples(group = "death") %>%
-  comp_barplot(tax_level = "Species", bar_width = 0.8, n_taxa = 3, tax_order = c("Escherichia coli", "Bifidobacterium pseudocatenulatum", "Streptococcus gallolyticus")) +
-  labs(x= NULL, y = NULL, title = "death")
-ggsave("species_sick_death_anemia.png", death_barplot, width = 4, height = 3, dpi = 1200, device = "png")
-
-death_barplot <- asv_sick %>% ps_mutate(anemia = case_when(hgbbase < 10.5 ~ 1, .default = 0)) %>%
-  ps_filter(hbsgt == 3) %>%
-  ps_select(sick, inpathemosvno12m, hyperpa0, Group, thrombocytopenia, enr_cm, enr_sma, haki,
-            tooweak, respdist, acidosis, jaundice_adm, convulhx, lowph, hyperbili, hypoglu, sick, 
-            stool_dt0, doe, antibio2, antibiot1, antibiot2, sickvmal6m, inpatmal6m, feedhour, tff3_inj, hyper_uri, death) %>%
-  phyloseq::merge_samples(group = "death") %>%
-  comp_barplot(tax_level = "Species", bar_width = 0.8, n_taxa = 4, tax_order = c("Escherichia coli", "Bacteroides vulgatus", "Bifidobacterium pseudocatenulatum", "Streptococcus gallolyticus")) +
-  labs(x= NULL, y = NULL, title = "death")
-ggsave("species_sick_anemic_death.png", death_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
-
-anemic_barplot <- asv_sick %>% ps_mutate(anemia = case_when(hgbbase <= 7 ~ 1, .default = 0)) %>%
-  phyloseq::merge_samples(group = "anemia") %>%
-  comp_barplot(tax_level = "Genus", bar_width = 0.8, n_taxa = 10) +
-  labs(x= NULL, y = NULL, title = "anemia")
-ggsave("species_sick_anemic_death.png", death_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
-
-##hyperuri barplots
-
-hyperuri_barplot <- asv_sick %>% 
-  phyloseq::merge_samples(group = "hyper_uri") %>%
-  comp_barplot(tax_level = "Species", bar_width = 0.8, n_taxa = 5, tax_order = c("Escherichia coli", "Bacteroides thetaiotaomicron", "Enterococcus faecium", "Enterococcus durans", "Enterococcus hirae")) +
-  labs(x= NULL, y = NULL, title = "Hyperuri")
-ggsave("species_sick_hyperuric.png", hyperuri_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
-hyperuri_barplot <- asv_sick %>% 
-  phyloseq::merge_samples(group = "hyper_uri") %>%
-  comp_barplot(tax_level = "Family", bar_width = 0.8, n_taxa = 2, tax_order = c("Enterobacteriaceae", "Enterococcaceae"))+
-  labs(x= NULL, y = NULL, title = "Hyperuri")
-ggsave("family_sick_hyperuric.png", hyperuri_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")

@@ -1,6 +1,18 @@
 
 ###HEATMAP####
 #antibio2
+asv_sick <- read.rds("asv_sick.rds")
+asv_sick <- asv_sick %>% ps_mutate(prior_abx_oral = case_when(amoxyl == 1 ~ 1,
+                           cipro == 1 ~ 1,
+                           cotrimoxazole == 1 ~ 1,
+                           flagyl == 1 ~ 1,
+                           othantibi == "Ampiclox" ~ 1,
+                           othantibi == "Azithromycin syrup" ~ 1,
+                           othantibi == "Cefladriox" ~ 1,
+                           othantibi == "Cephalexin" ~ 1,
+                           othantibi == "Doxycline" ~ 1,
+                           othantibi == "Erythromycin" ~ 1,
+                           .default = 0))
 bb_models_asv_0_group <- asv_sick %>%
   tax_fix() %>%
   tax_prepend_ranks() %>%
@@ -8,7 +20,7 @@ bb_models_asv_0_group <- asv_sick %>%
   taxatree_models(
     type = corncob::bbdml,
     ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
-    variables = c("antibio2")
+    variables = c("prior_abx_oral")
   )
 bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
 bb_stats_asv_0_group
@@ -79,7 +91,7 @@ bb_models_asv_0_group <- asv_sick %>%
   taxatree_models(
     type = corncob::bbdml,
     ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
-    variables = c("hyper_uri")
+    variables = c("uric_se1")
   )
 bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
 bb_stats_asv_0_group
