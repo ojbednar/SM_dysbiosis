@@ -1,11 +1,12 @@
-
 library(tidyverse)
 library(ggthemes)
 library(ggpubr)
 library(gt)
 library(gtsummary)
 
-#re-admission analysis
+new <- read.csv("full_study.csv")
+new <- new %>% mutate(sick = case_when(group != 6 ~ "SM",
+                                       group == 6 ~ "CC")) 
 inpat <- new %>%
   drop_na(inpatmal12m) %>%
   count(sick, inpatmal12m) %>%       
@@ -321,70 +322,39 @@ inpat_any <- new %>%
   theme_pubclean()
 ggsave("inpatanyl12m_cc_new.png", inpat_any, width = 3, height = 6, dpi = 1200, device = "png")
 
-ane <- new %>% filter( hgbbase < 10.5)
-##for fischer's exact test, one tailed\
-table(new$sick, new$inpatany12m)
-table(new$sick, new$inpatsepsis12m)
-table(new$sick, new$outpatmal12m)
-table(new$sick, new$inpatmal12m)
 
-table(ane$sick, ane$inpatany12m)
-table(ane$sick, ane$inpatsepsis12m)
-table(ane$sick, ane$outpatmal12m)
-table(ane$sick, ane$inpatmal12m)
 
-inpat_sep<-ane %>%
-  drop_na(inpatsepsis12m) %>%
-  count(sick, inpatsepsis12m) %>%       
-  group_by(sick) %>%
-  mutate(pct= prop.table(n) * 100) %>%
-  ggplot() + aes(sick, pct, fill=factor(inpatsepsis12m)) +
-  geom_bar(stat="identity") +
-  ylab("% of children with sepsis over 12 months-CC") +
-  geom_text(aes(label=paste0(sprintf("%1.1f", pct),"%")),
-            position=position_stack(vjust=0.5)) +
-  theme_pubclean() + scale_fill_brewer(palette = "Reds")
-ggsave("inpatsepsis12m_sick_anemic.png", inpat_sep, width = 4, height = 6, dpi = 1200, device = "png")
-cc <- new %>% filter(group == 6) %>% mutate(pf = case_when(pcr_fal0 == 1 ~ "PfPos",
-                                                           pcr_fal0 == 0 ~ "PfNeg"))
-
-table(cc$pf, cc$inpatany12m)
-table(cc$pf, cc$inpatsepsis12m)
-table(cc$pf, cc$outpatmal12m)
-table(cc$pf, cc$inpatmal12m)
 
 #for adjusted odds ratios
-new %>%
+# function to calculate OR from 2x2 table
+or_fun <- function(data, variable, by, ...) {
+  table(data[[by]], data[[variable]]) %>%
+    fisher.test() %>%
+    broom::tidy()
+}
+
+#test
+or_fun(new, "sick", "inpatsepsis12m")
+
+##for fischer's exact test, two tailed- SM vs CC
+summary_sick <- new %>%
   select(sick, outpatmal12m,inpatmal12m, inpatsepsis12m, inpatany12m) %>%
-  tbl_uvregression(
-    method = glm,
-    y = sick,
-    method.args = list(family = binomial),
-    exponentiate = TRUE,
-    pvalue_fun = ~ style_pvalue(.x, digits = 2)
-  ) %>%
-  add_global_p() %>% # add global p-value
-  add_nevent() %>% # add number of events of the outcome
-  add_q() %>% # adjusts global p-values for multiple testing
-  bold_p() %>% # bold p-values under a given threshold (default 0.05)
-  bold_p(t = 0.10, q = TRUE) %>% # now bold q-values under the threshold of 0.10
-  bold_labels() %>%
-  as_gt() %>%
-  gt::gtsave(filename = "OR_cc_v_sm_hospitalization.pdf")
-cc %>%
+  tbl_summary(by = sick, missing = "no", statistic = all_categorical() ~ "{n} / {N} ({p}%)") %>%
+  add_difference(test = everything() ~ or_fun, estimate_fun = everything() ~ style_ratio)%>%
+  modify_header(estimate ~ "**Odds Ratio**")
+summary_sick %>% add_q(method = "holm") %>% as_gt() %>%
+  gt::gtsave(filename = "OR_cc_v_sm_hospitalization.docx") 
+
+##for fischer's exact test, two tailed- Pfpos vs pfneg
+cc <- new %>% filter(group == 6) %>% mutate(Pf = case_when(pcr_fal0 == 1 ~ "PfPos",
+                                                           pcr_fal0 == 0 ~ "PfNeg"))
+summary_cc <- cc %>%
   select(Pf, outpatmal12m,inpatmal12m, inpatsepsis12m, inpatany12m) %>%
-  tbl_uvregression(
-    method = glm,
-    y = Pf,
-    method.args = list(family = binomial),
-    exponentiate = TRUE,
-    pvalue_fun = ~ style_pvalue(.x, digits = 2)
-  ) %>%
-  add_global_p() %>% # add global p-value
-  add_nevent() %>% # add number of events of the outcome
-  add_q() %>% # adjusts global p-values for multiple testing
-  bold_p() %>% # bold p-values under a given threshold (default 0.05)
-  bold_p(t = 0.10, q = TRUE) %>% # now bold q-values under the threshold of 0.10
-  bold_labels() %>%
-  as_gt() %>%
-  gt::gtsave(filename = "OR_pfpos_v_pfneg_hospitalization.pdf")
+  tbl_summary(by = Pf, missing = "no", statistic = all_categorical() ~ "{n} / {N} ({p}%)") %>%
+  add_difference(test = everything() ~ or_fun, estimate_fun = everything() ~ style_ratio) %>%
+  modify_header(estimate ~ "**Odds Ratio**")
+summary_cc %>% add_q(method = "holm") %>% as_gt() %>%
+  gt::gtsave(filename = "OR_pfpos_v_pfneg_hospitalization.docx") 
+  
+
+
