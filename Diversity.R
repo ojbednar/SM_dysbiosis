@@ -99,31 +99,8 @@ library(microViz)
 library(corncob)
 library(ggthemes)
 
-krak <- readRDS("wgs_kraken_phyloseq.rds")
-metaphlan <- readRDS("wgs_metaphlan_phyloseq.rds")
-
-#barokits
-k_barplot <- krak_0 %>%
-  ps_mutate(Outcome = cut(outcome, breaks=2, labels=c("survived", "died"))) %>%
-  ps_select(Outcome, Group, sick) %>%
-  phyloseq::merge_samples(group = "sick") %>%
-  comp_barplot(tax_level = "Family", bar_width = 0.8, n_taxa = 7,tax_order = c("Enterobacteriaceae", "Bacteroidaceae",
-                                                                               "Enterococcaceae", "Prevotellaceae", 
-                                                                               "Lachnospiraceae", 
-                                                                               "Bifidobacteriaceae", "Streptococcaceae")) +
-  labs(x= NULL, y = NULL, title= "Kraken")
-ggsave("ccvsm_family_kraken.png", k_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
-
-m_barplot <- metaphlan_0 %>%
-  ps_mutate(Outcome = cut(outcome, breaks=2, labels=c("survived", "died"))) %>%
-  ps_select(Outcome, Group, sick) %>%
-  phyloseq::merge_samples(group = "sick") %>%
-  comp_barplot(tax_level = "Family", bar_width = 0.8, n_taxa = 7, tax_order = c("Enterobacteriaceae", "Bacteroidaceae",
-                                                                                "Enterococcaceae", "Prevotellaceae", 
-                                                                                "Lachnospiraceae", 
-                                                                                "Bifidobacteriaceae", "Streptococcaceae")) +
-  labs(x= NULL, y = NULL, title= "Metaphlan sick")
-ggsave("ccvsm_family_metaphlan.png", m_barplot, width = 8.3, height = 10, dpi = 1200, device = "png")
+krak_0 <- readRDS(krak_0, "krak_0.RDS")
+metaphlan_0 <-readRDS(metaphlan_0, "metaphlan_0.RDS")
 
 ##beta diversity
 beta_2 <- metaphlan_0 %>%

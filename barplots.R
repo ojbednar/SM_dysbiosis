@@ -3,8 +3,8 @@
 #family
 asv <- read.csv("ndi_asv.rds")
 asv_0 <- asv %>% ps_filter(month == 0)
-readRDS(krak_0, "krak_0.RDS")
-readRDS(metaphlan_0, "krak_0.RDS")
+krak_0 <- readRDS(krak_0, "krak_0.RDS")
+metaphlan_0 <-readRDS(metaphlan_0, "metaphlan_0.RDS")
 
 ccvsm_barplot <- asv_0 %>%
   phyloseq::merge_samples(group = "sick") %>%
