@@ -1,5 +1,3 @@
-setwd("/Users/ojbednar/Library/CloudStorage/OneDrive-IndianaUniversity/NDI_16S")
-
 library(phyloseq)
 library(microViz)
 library(tidyverse)
@@ -94,10 +92,16 @@ write_csv(plot_data_species, "species_16S.csv")
 
 ##################
 #metaphlan
-setwd("/Users/ojbednar/Library/CloudStorage/OneDrive-IndianaUniversity/Schmidt lab/microbiome/metaphlan_NDI")
-species <- read.csv("abs_merged_species_only.csv")
-mphln.species <- species %>% filter(grepl('s__', clade_name)) %>%
-  filter(!grepl('t__', clade_name)) #strain is repeat of reads and needs to be removed, could be analyzed separately
+#txt file output named abs_merged.txt was from the merged files
+#file was opened in excel first
+#first line (zero data with no info) was deleted, as well as taxid column and converted to a csv and renamed abs_merged_clean.csv
+mphln.abs <- read.csv("abs_merged_clean.csv")  
+#it was identified that that in some cases, the strain level data was duplicated with an empty value for RDS-2 
+#these rows were removed as they were duplicates
+mphln.abs <- na.omit(mphln.abs)
+mphln.abs.bacteria <-mphln.abs %>% filter(grepl('k__Bacteria', clade_name))
+mphln.species.t <- mphln.abs.bacteria %>% filter(grepl('s__', clade_name)) %>%
+  filter(!grepl('t__', clade_name))
 
 #otu table
 otu <- subset(mphln.species, select = -clade_name) %>% as.matrix()
@@ -162,7 +166,6 @@ metaphlan_0 <- bacteria_physeq %>% ps_filter(month == 0) %>%
 
 #############
 #kraken
-setwd("/Users/ojbednar/Library/CloudStorage/OneDrive-IndianaUniversity/Schmidt lab/microbiome/kraken_bracken_output")
 kraken_wgs <- import_biom("breports_combined.biom")
 #metadata
 metadata <- read.csv("wgs_meta_krak.csv")
@@ -227,7 +230,7 @@ krak_0 <- krak %>% ps_filter(month == 0) %>%
                                   date_to_stool == 6 ~ "day 6",
                                   date_to_stool >= 7 ~ "day 7+"))
 ### for 1 month samples
-remain <- read.csv("~/Library/CloudStorage/OneDrive-IndianaUniversity/NDI_16S/NDI_remaining_or_follow_up_samples.csv")
+remain <- read.csv("NDI_remaining_or_follow_up_samples.csv")
 meta <- remain
 
 meta_new <- left_join(meta, new, by = "studyid") %>% as.data.frame #merge stool and study metadata

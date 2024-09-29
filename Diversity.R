@@ -1,6 +1,8 @@
 library(microViz)
 library(ggthemes)
 #alpha diversity 
+asv <- read.csv("ndi_asv.rds")
+asv_0 <- asv %>% ps_filter(month == 0)
 asv_0 <- asv_0 %>% ps_mutate(sick = case_when(group %in% c(1,2,3,4,5) ~ "SM",
                                               group == 6 ~ "CC"),
                              doe_date = dmy(doe),
@@ -135,7 +137,6 @@ ggsave("ccvsm_beta_aitchison_kraken_sick.png", beta_3, width = 6, height = 8, dp
 
 
 ##alpha diversity table
-krak <- readRDS("wgs_kraken_phyloseq.rds")
 alpha_stat_krak <-  krak_0 %>%
   ps_calc_diversity(rank = "Species", index = 'shannon') %>%
   ps_calc_richness(rank = "Species", index = 'observed') %>%
