@@ -342,7 +342,9 @@ summary_sick <- new %>%
   tbl_summary(by = sick, missing = "no", statistic = all_categorical() ~ "{n} / {N} ({p}%)") %>%
   add_difference(test = everything() ~ or_fun, estimate_fun = everything() ~ style_ratio)%>%
   modify_header(estimate ~ "**Odds Ratio**")
-summary_sick %>% add_q(method = "holm") %>% as_gt() %>%
+summary_sick %>% add_q(method = "holm") %>% 
+  modify_header(q.value ~ "**Adjusted p-value**") %>%
+  as_gt() %>%
   gt::gtsave(filename = "OR_cc_v_sm_hospitalization.docx") 
 
 ##for fischer's exact test, two tailed- Pfpos vs pfneg
@@ -353,7 +355,9 @@ summary_cc <- cc %>%
   tbl_summary(by = Pf, missing = "no", statistic = all_categorical() ~ "{n} / {N} ({p}%)") %>%
   add_difference(test = everything() ~ or_fun, estimate_fun = everything() ~ style_ratio) %>%
   modify_header(estimate ~ "**Odds Ratio**")
-summary_cc %>% add_q(method = "holm") %>% as_gt() %>%
+summary_cc %>% add_q(method = "holm") %>% 
+  modify_header(q.value ~ "**Adjusted p-value**") %>%
+  as_gt() %>%
   gt::gtsave(filename = "OR_pfpos_v_pfneg_hospitalization.docx") 
   
 

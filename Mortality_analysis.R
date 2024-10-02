@@ -2,8 +2,6 @@
 #OR table
 library(phyloseq)
 library(tidyverse)
-library(gt)
-library(gtsummary)
 library(ggplot2)
 library(ggthemes)
 library(survival)
@@ -307,23 +305,114 @@ death_df <- plot_data %>% drop_na(sm_death12m) %>%
          high_enterob = case_when(Enterobacteriaceae < 7.3 ~ "< median",
                                   Enterobacteriaceae >= 7.3 ~ ">= median",
                                   .default = NA)) 
-#inital models
+#models
 entero <- coxph(Surv(days_to_living, sm_death12m) ~ high_enterob, data = death_df)
 entero %>% tbl_regression(exponentiate = TRUE) %>%  
   bold_p() %>% # bold p-values under a given threshold (default 0.05)
   bold_labels() %>%
   add_nevent(location="level") %>%
   add_n(location="level") %>%
-  as_gt() 
+  as_gt() %>%
+  gtsave("high_entero_cox.docx")
 
-#test for singularities
+entero_hbsgt <- coxph(Surv(days_to_living, sm_death12m) ~ high_enterob+hbsgt_bin, data = death_df)
+entero_hbsgt %>% tbl_regression(exponentiate = TRUE) %>%  
+  bold_p() %>% # bold p-values under a given threshold (default 0.05)
+  bold_labels() %>%
+  add_nevent(location="level") %>%
+  add_n(location="level") %>%
+  as_gt()%>%
+  gtsave("high_entero_hbsgt_cox.docx") 
+
+sma_entero <- coxph(Surv(days_to_living, sm_death12m) ~ high_enterob+sma, data = death_df)
+sma_entero %>% tbl_regression(exponentiate = TRUE) %>%  
+  bold_p() %>% # bold p-values under a given threshold (default 0.05)
+  bold_labels() %>%
+  add_nevent(location="level") %>%
+  add_n(location="level") %>%
+  as_gt() %>%
+  gtsave("sma_noSS_cox.docx")
+
+uric_entero <- coxph(Surv(days_to_living, sm_death12m) ~ high_enterob+h_uric, data = death_df)
+uric_entero %>% tbl_regression(exponentiate = TRUE) %>%  
+  bold_p() %>% # bold p-values under a given threshold (default 0.05)
+  bold_labels() %>%
+  add_nevent(location="level") %>%
+  add_n(location="level") %>%
+  as_gt()%>%
+  gtsave("huric_noSS_cox.docx")
+
+aki_entero <- coxph(Surv(days_to_living, sm_death12m) ~ high_enterob+aki, data = death_df)
+aki_entero %>% tbl_regression(exponentiate = TRUE) %>%  
+  bold_p() %>% # bold p-values under a given threshold (default 0.05)
+  bold_labels() %>%
+  add_nevent(location="level") %>%
+  add_n(location="level") %>%
+  as_gt() %>%
+  gtsave("aki_noSS_cox.docx")
+
+
+#1: testing for separation
+#create table to see if any of the levels of categorical variables are fully censored
 table(death_df$sm_death12m, death_df$high_enterob)
+table(death_df$sm_death12m, death_df$hbsgt_bin)
+table(death_df$sm_death12m, death_df$sma)
+table(death_df$sm_death12m, death_df$h_uric)
+table(death_df$sm_death12m, death_df$aki)
+table(death_df$high_enterob, death_df$sma)
+table(death_df$high_enterob, death_df$aki)
+table(death_df$high_enterob, death_df$h_uric)
+table(death_df$high_enterob, death_df$hbsgt_bin)
+#2: test for colinearity 
+#use the variance inflation factor to diagnose collinearity
+#too large magnitude is not defined but values > 2.5 are concerning and value > 5 or 10 indicate collinearity issues
+#cox regression does not have VIF built in, so convert to linear regression and then test.
+pretend.lm <- lm(sm_death12m ~high_enterob+sma+hbsgt_bin,
+                 data = death_df)
+car::vif(pretend.lm)
+#fine
+pretend.lm <- lm(sm_death12m ~ high_enterob+h_uric+hbsgt_bin,
+                 data = death_df)
+car::vif(pretend.lm)
+#fine
+pretend.lm <- lm(sm_death12m ~ high_enterob+aki+hbsgt_bin,
+                 data = death_df)
+car::vif(pretend.lm)
+#fine
 
-#confirm assumptions
+
+#3:test proportional hazard ratio
+#cox regression assumes the hazard ratio of a predictor is constant over time-- hazard itself may change over time, but the ratio of hazards comparing any two individuals should be constant
+#cox.zph() works by comparing PH model for each predictor to a model where the predictor's regression coeff vary smoothly with time
 entero.zph<-cox.zph(entero)
 print(entero.zph)
 par(mfrow=c(1,2))
 plot(entero.zph)
+#globally fine 
+
+entero_hbsgt.zph<-cox.zph(entero_hbsgt)
+print(entero_hbsgt.zph)
+par(mfrow=c(1,2))
+plot(entero_hbsgt.zph)
+#globally fine 
+
+sma_entero_zph <- cox.zph(sma_entero)
+print(sma_entero_zph)
+par(mfrow=c(2,2))
+plot(sma_entero_zph)
+#globally fine
+
+uric_entero_zph <- cox.zph(uric_entero)
+print(uric_entero_zph)
+par(mfrow=c(2,2))
+plot(uric_entero_zph)
+#globally fine
+
+aki_entero_zph <- cox.zph(aki_entero)
+print(aki_entero_zph)
+par(mfrow=c(2,2))
+plot(aki_entero_zph)
+#globally fine
 
 #check residulas for linearity
 #display more dianostics with ggcoxdiagnostics 
@@ -333,7 +422,7 @@ ggcoxdiagnostics(entero, type = "martingale")
 
 #validate findings
 library(rms)
-dd <- datadist(death_df[,c("high_enterob","hbsgt_bin")])
+dd <- datadist(death_df[,c("high_enterob")])
 options(datadist='dd')
 time.inc <- 365
 S <- rms::Surv(death_df$days_to_living, death_df$sm_death12m)
