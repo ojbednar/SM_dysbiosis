@@ -1,7 +1,10 @@
 
 ###HEATMAP####
+library(microViz)
+library(tidyverse)
 #antibio2
-asv_sick <- read.rds("asv_sick.rds")
+asv <- readRDS("ndi_asv.rds")
+asv_sick <- asv_0 %>% ps_filter(month == 0,sick == TRUE) 
 asv_sick <- asv_sick %>% ps_mutate(prior_abx_oral = case_when(amoxyl == 1 ~ 1,
                            cipro == 1 ~ 1,
                            cotrimoxazole == 1 ~ 1,
@@ -82,6 +85,35 @@ bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu
 bb_stats_asv_0_group
 ho <- bb_stats_asv_0_group %>% taxatree_stats_get()
 
+#free hemoglobin
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("hb_se1")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+hb <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
+
+#hemin
+bb_models_asv_0_group <- asv_sick %>%
+  tax_fix() %>%
+  tax_prepend_ranks() %>%
+  tax_filter(min_prevalence = 0.1) %>%
+  taxatree_models(
+    type = corncob::bbdml,
+    ranks = c("Phylum", "Class", "Order", "Family", "Genus"),
+    variables = c("hm_se1")
+  )
+bb_stats_asv_0_group <- taxatree_models2stats(bb_models_asv_0_group, param = "mu")
+bb_stats_asv_0_group
+hm <- bb_stats_asv_0_group %>% taxatree_stats_get()
+
 
 #hyper_uri
 bb_models_asv_0_group <- asv_sick %>%
@@ -98,7 +130,7 @@ bb_stats_asv_0_group
 uri <- bb_stats_asv_0_group %>% taxatree_stats_get()
 
 #heatmap
-h <- rbind(antibio2, feed, neu, wbc, ho, uri) # bind all variables vertically
+h <- rbind(antibio2, feed, neu, wbc, hb, hm, ho, uri) # bind all variables vertically
 h <- h %>% filter(rank == "Genus")#filter to only Genus
 h$taxon <- sub('^G:', '', h$taxon)#remove prefix
 h$taxon <- reorder(h$taxon,h$t.statistic)#order by significance
@@ -110,7 +142,7 @@ p<-ggplot(h, aes(term, taxon, fill= t.statistic)) +
   # scale_x_discrete(limits=(h$term)[order(h$t.statistic)]) + 
   #scale_y_discrete(limits=(h$taxon)[order(h$t.statistic)]) +
   geom_tile() 
-p <- p +scale_fill_distiller(palette = 'RdBu') + geom_text(aes(label=if_else(p.value<0.05, "*", " "))) +  coord_fixed(ratio=0.1) + 
+p <- p +scale_fill_distiller(palette = 'RdBu') + geom_text(aes(label=if_else(p.value<0.05, "*", " ")), hjust=0.6, vjust=0.75) +  coord_fixed(ratio=0.2) + 
   scale_x_discrete(expand = c(-1,1)) + theme_grey()
 p
 ggsave("ordered_factors_contributing_w_antibio2.png", plot = p)
