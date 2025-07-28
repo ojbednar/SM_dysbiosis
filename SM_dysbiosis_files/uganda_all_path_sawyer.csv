@@ -1,0 +1,263 @@
+﻿feature,pathway,category,metadata,value,UG_coef,UG_stderr,UG_N,UG_N.not.0,UG_pval,UG_qval
+PWY.7805...aminomethyl.phosphonate.degradation,aminomethyl phosphate degradation,metabolic,sick,SM,5.604693247,0.986435143,41,34,1.43293E-06,8.86E-05
+PWY0.1533..methylphosphonate.degradation.I,,metabolic,sick,SM,5.60432532,1.044866745,41,35,3.95324E-06,8.86E-05
+PWY.7807..glyphosate.degradation.III,,metabolic,sick,SM,5.4193962,1.0107545,41,35,3.97775E-06,8.86E-05
+KETOGLUCONMET.PWY..ketogluconate.metabolism,,metabolic,sick,SM,4.62470557,0.858162927,41,39,3.6461E-06,8.86E-05
+PWY.7204..pyridoxal.5.phosphate.salvage.II..plants.,,metabolic,sick,SM,4.373853307,0.836217324,41,39,6.03673E-06,8.86E-05
+GLYCOL.GLYOXDEG.PWY..superpathway.of.glycol.metabolism.and.degradation,,metabolic,sick,SM,4.336756342,0.807564189,41,39,3.87235E-06,8.86E-05
+PWY.5656..mannosylglycerate.biosynthesis.I,,metabolic,sick,SM,4.202764152,0.750282974,41,40,1.85134E-06,8.86E-05
+PWY.5723..Rubisco.shunt,,metabolic,sick,SM,4.185249029,0.793989117,41,40,5.3056E-06,8.86E-05
+PWY0.1338..polymyxin.resistance,polymixin resistance,pathogenic,sick,SM,4.164072671,0.750742893,41,40,2.2065E-06,8.86E-05
+PWY.7187..pyrimidine.deoxyribonucleotides.de.novo.biosynthesis.II,,metabolic,sick,SM,4.07579978,0.77195883,41,38,5.16177E-06,8.86E-05
+NAD.BIOSYNTHESIS.II..NAD.salvage.pathway.III..to.nicotinamide.riboside.,,metabolic,sick,SM,3.656978649,0.605133227,41,38,4.5096E-07,8.86E-05
+PWY.5138..fatty.acid..beta..oxidation.IV..unsaturated..even.number.,,aerobic,sick,SM,3.63813207,0.69738242,41,39,6.30472E-06,8.86E-05
+PWY.6531..mannitol.cycle,,metabolic,sick,SM,3.619629425,0.669697334,41,41,3.46719E-06,8.86E-05
+FAO.PWY..fatty.acid..beta..oxidation.I..generic.,beta oxidation I,aerobic,sick,SM,3.613697384,0.690073573,41,39,5.91977E-06,8.86E-05
+HEME.BIOSYNTHESIS.II.1..heme.b.biosynthesis.V..aerobic.,heme b biosynthesis V aerobic,iron,sick,SM,3.586339486,0.676947134,41,39,4.87474E-06,8.86E-05
+DENOVOPURINE2.PWY..superpathway.of.purine.nucleotides.de.novo.biosynthesis.II,,purine,sick,SM,3.571204712,0.664424796,41,38,3.81469E-06,8.86E-05
+PWY0.301..L.ascorbate.degradation.I..bacterial..anaerobic.,,metabolic,sick,SM,3.526388546,0.625899492,41,40,1.66858E-06,8.86E-05
+METHGLYUT.PWY..superpathway.of.methylglyoxal.degradation,,metabolic,sick,SM,3.186524389,0.562375816,41,40,1.50608E-06,8.86E-05
+NAGLIPASYN.PWY..lipid.IVA.biosynthesis..E..coli.,,metabolic,sick,SM,3.127911085,0.59302421,41,41,5.24956E-06,8.86E-05
+PWY.8073..lipid.IVA.biosynthesis..P..putida.,,metabolic,sick,SM,3.127911085,0.59302421,41,41,5.24956E-06,8.86E-05
+PWY.7184..pyrimidine.deoxyribonucleotides.de.novo.biosynthesis.I,,metabolic,sick,SM,3.104349479,0.571020427,41,41,3.13488E-06,8.86E-05
+PWY.6859..all.trans.farnesol.biosynthesis,,metabolic,sick,SM,3.038971819,0.558459028,41,41,3.08321E-06,8.86E-05
+METSYN.PWY..superpathway.of.L.homoserine.and.L.methionine.biosynthesis,,amino acid,sick,SM,2.745439351,0.527272704,41,41,6.50742E-06,8.86E-05
+POLYISOPRENSYN.PWY..polyisoprenoid.biosynthesis..E..coli.,,metabolic,sick,SM,2.728538941,0.474052567,41,41,1.13106E-06,8.86E-05
+PWY.6282..palmitoleate.biosynthesis.I..from..5Z..dodec.5.enoate.,,metabolic,sick,SM,2.704113996,0.483661094,41,41,1.91536E-06,8.86E-05
+PWY.5347..superpathway.of.L.methionine.biosynthesis..transsulfuration.,,amino acid,sick,SM,2.684928073,0.513625626,41,41,6.09681E-06,8.86E-05
+MET.SAM.PWY..superpathway.of.S.adenosyl.L.methionine.biosynthesis,,amino acid,sick,SM,2.664898511,0.510077604,41,41,6.15333E-06,8.86E-05
+PWY.5861..superpathway.of.demethylmenaquinol.8.biosynthesis.I,,aerobic,sick,SM,2.632798951,0.504994625,41,41,6.37151E-06,8.86E-05
+PWY.5989..stearate.biosynthesis.II..bacteria.and.plants.,,metabolic,sick,SM,2.589313575,0.465048818,41,41,2.06193E-06,8.86E-05
+FASYN.ELONG.PWY..fatty.acid.elongation....saturated,,metabolic,sick,SM,2.582590451,0.466061722,41,41,2.24412E-06,8.86E-05
+PWY.6519..8.amino.7.oxononanoate.biosynthesis.I,,metabolic,sick,SM,2.559448759,0.473600719,41,41,3.47427E-06,8.86E-05
+PWY.7664..oleate.biosynthesis.IV..anaerobic.,,metabolic,sick,SM,2.557698817,0.468984064,41,41,2.96758E-06,8.86E-05
+PWY.5971..palmitate.biosynthesis..type.II.fatty.acid.synthase.,,metabolic,sick,SM,2.388147182,0.45433906,41,41,5.56203E-06,8.86E-05
+BIOTIN.BIOSYNTHESIS.PWY..biotin.biosynthesis.I,,metabolic,sick,SM,2.357349103,0.447617508,41,41,5.38595E-06,8.86E-05
+PWY.5920..superpathway.of.heme.b.biosynthesis.from.glycine,,iron,sick,SM,3.911229038,0.75761041,41,39,7.48864E-06,9.63E-05
+HOMOSER.METSYN.PWY..L.methionine.biosynthesis.I,,amino acid,sick,SM,2.915387704,0.563850267,41,41,7.3031E-06,9.63E-05
+PWY.5838..superpathway.of.menaquinol.8.biosynthesis.I,,aerobic,sick,SM,2.456160473,0.477651206,41,41,7.98935E-06,1.00E-04
+KDO.NAGLIPASYN.PWY..superpathway.of..Kdo.2.lipid.A.biosynthesis,,metabolic,sick,SM,3.869396582,0.755631238,41,39,8.5501E-06,0.000101505
+PRPP.PWY..superpathway.of.histidine..purine..and.pyrimidine.biosynthesis,,metabolic,sick,SM,3.170447134,0.618156995,41,38,8.33295E-06,0.000101505
+PWY.7409..phospholipid.remodeling..phosphatidylethanolamine..yeast.,,metabolic,sick,SM,5.455687514,1.072105635,41,32,9.46114E-06,0.000101872
+PWY0.461..L.lysine.degradation.I,,amino acid,sick,SM,4.708765352,0.921843231,41,33,8.90253E-06,0.000101872
+DARABCATK12.PWY..D.arabinose.degradation.I,,metabolic,sick,SM,4.189954745,0.821261818,41,39,9.07721E-06,0.000101872
+PWY0.1415..superpathway.of.heme.b.biosynthesis.from.uroporphyrinogen.III,,iron,sick,SM,3.547591984,0.696357638,41,39,9.29092E-06,0.000101872
+PWY0.1337..oleate..beta..oxidation,,aerobic,sick,SM,4.305382089,0.853149237,41,38,1.08152E-05,0.000106541
+AST.PWY..L.arginine.degradation.II..AST.pathway.,,amino acid,sick,SM,4.054432476,0.801840515,41,39,1.04804E-05,0.000106541
+PWY.5675..nitrate.reduction.V..assimilatory.,,metabolic,sick,SM,4.02466487,0.795170687,41,41,1.03167E-05,0.000106541
+PWY.6545..pyrimidine.deoxyribonucleotides.de.novo.biosynthesis.III,,metabolic,sick,SM,2.588113396,0.512741095,41,41,1.07761E-05,0.000106541
+ECASYN.PWY..enterobacterial.common.antigen.biosynthesis,,metabolic,sick,SM,3.667984636,0.731320889,41,39,1.19239E-05,0.000115016
+PWY.5855..ubiquinol.7.biosynthesis..early.decarboxylation.,ubiquinol 7 biosynthesis,aerobic,sick,SM,4.296101853,0.861525589,41,40,1.30641E-05,0.000116512
+PWY.5897..superpathway.of.menaquinol.11.biosynthesis,,aerobic,sick,SM,2.146934531,0.430583892,41,41,1.30856E-05,0.000116512
+PWY.5898..superpathway.of.menaquinol.12.biosynthesis,,aerobic,sick,SM,2.146934531,0.430583892,41,41,1.30856E-05,0.000116512
+PWY.5899..superpathway.of.menaquinol.13.biosynthesis,,aerobic,sick,SM,2.146934531,0.430583892,41,41,1.30856E-05,0.000116512
+PWY.5837..2.carboxy.1.4.naphthoquinol.biosynthesis,,aerobic,sick,SM,2.474588068,0.4982184,41,41,1.39035E-05,0.000121459
+PWY.7094..fatty.acid.salvage,,metabolic,sick,SM,4.289351552,0.865611367,41,38,1.44208E-05,0.000123645
+PWY0.166..superpathway.of.pyrimidine.deoxyribonucleotides.de.novo.biosynthesis..E..coli.,,metabolic,sick,SM,3.513708627,0.712771794,41,40,1.5634E-05,0.000128659
+TCA.GLYOX.BYPASS..superpathway.of.glyoxylate.bypass.and.TCA,,aerobic,sick,SM,3.317373385,0.672585771,41,39,1.55052E-05,0.000128659
+PWY.6961..L.ascorbate.degradation.II..bacterial..aerobic.,,aerobic,sick,SM,3.075161874,0.624335103,41,40,1.58392E-05,0.000128659
+TCA..TCA.cycle.I..prokaryotic.,TCA cycle I prokaryote,aerobic,sick,SM,3.216532915,0.660384024,41,40,1.88185E-05,0.000150223
+CITRULBIO.PWY..L.citrulline.biosynthesis,,amino acid,sick,SM,2.986712354,0.61571686,41,41,2.0033E-05,0.000157208
+PWY.801..homocysteine.and.cysteine.interconversion,,amino acid,sick,SM,3.176821381,0.662983764,41,39,2.41117E-05,0.000183012
+PWY.561..superpathway.of.glyoxylate.cycle.and.fatty.acid.degradation,,metabolic,sick,SM,3.15477144,0.658038721,41,40,2.39236E-05,0.000183012
+PWY.5845..superpathway.of.menaquinol.9.biosynthesis,,aerobic,sick,SM,2.848907581,0.596251493,41,39,2.51667E-05,0.000187938
+HCAMHPDEG.PWY..3.phenylpropanoate.and.3..3.hydroxyphenyl.propanoate.degradation.to.2.hydroxypentadienoate,,metabolic,sick,SM,3.946296248,0.830205073,41,39,2.71833E-05,0.000193629
+PWY.6690..cinnamate.and.3.hydroxycinnamate.degradation.to.2.hydroxypentadienoate,,aerobic,sick,SM,3.946296248,0.830205073,41,39,2.71833E-05,0.000193629
+PWY.5896..superpathway.of.menaquinol.10.biosynthesis,,aerobic,sick,SM,2.807435399,0.589908168,41,38,2.67024E-05,0.000193629
+PWY.5862..superpathway.of.demethylmenaquinol.9.biosynthesis,,aerobic,sick,SM,2.990205401,0.630012447,41,39,2.77968E-05,0.000194999
+PWY.6803..phosphatidylcholine.acyl.editing,,metabolic,sick,SM,3.683273997,0.777604888,41,40,2.86413E-05,0.000196119
+GALACTARDEG.PWY..D.galactarate.degradation.I,D-galactarate degradation,metabolic,sick,SM,3.344602562,0.707072585,41,41,2.92273E-05,0.000196119
+GLUCARGALACTSUPER.PWY..superpathway.of.D.glucarate.and.D.galactarate.degradation,,metabolic,sick,SM,3.344602562,0.707072585,41,41,2.92273E-05,0.000196119
+ARGDEG.PWY..superpathway.of.L.arginine..putrescine..and.4.aminobutanoate.degradation,,amino acid,sick,SM,4.2334079,0.89965556,41,37,3.15638E-05,0.000203316
+ORNARGDEG.PWY..superpathway.of.L.arginine.and.L.ornithine.degradation,,amino acid,sick,SM,4.2334079,0.89965556,41,37,3.15638E-05,0.000203316
+PWY.5860..superpathway.of.demethylmenaquinol.6.biosynthesis.I,,aerobic,sick,SM,2.928845208,0.623496641,41,38,3.23755E-05,0.000203316
+PWY.5850..superpathway.of.menaquinol.6.biosynthesis,,aerobic,sick,SM,2.77524259,0.590946528,41,38,3.24954E-05,0.000203316
+PENTOSE.P.PWY..pentose.phosphate.pathway,,metabolic,sick,SM,2.037058837,0.433085861,41,41,3.17611E-05,0.000203316
+ARGININE.SYN4.PWY..L.ornithine.biosynthesis.II,,amino acid,sick,SM,3.280453111,0.699173255,41,41,3.29409E-05,0.000203355
+PWY.5705..allantoin.degradation.to.glyoxylate.III,allantoin degradation to glyoxylate,purine,sick,SM,4.359865134,0.944441523,41,37,4.16812E-05,0.000247416
+P461.PWY..hexitol.fermentation.to.lactate..formate..ethanol.and.acetate,,metabolic,sick,SM,2.188511143,0.473663198,41,41,4.11593E-05,0.000247416
+PWY0.862...5Z..dodecenoate.biosynthesis.I,,metabolic,sick,SM,2.141519561,0.463181384,41,41,4.07636E-05,0.000247416
+PWY.7118..chitin.deacetylation,,metabolic,sick,SM,3.256095962,0.712294461,41,40,4.79428E-05,0.000280981
+GLYOXYLATE.BYPASS..glyoxylate.cycle,,metabolic,sick,SM,3.243805976,0.722187255,41,41,6.13482E-05,0.000346633
+HEME.BIOSYNTHESIS.II..heme.b.biosynthesis.I..aerobic.,,iron,sick,SM,2.667573232,0.59363619,41,41,6.0975E-05,0.000346633
+PWY.5840..superpathway.of.menaquinol.7.biosynthesis,,aerobic,sick,SM,2.411245992,0.536856441,41,40,6.13908E-05,0.000346633
+PWY.6293..superpathway.of.L.cysteine.biosynthesis..fungi.,,amino acid,sick,SM,2.896671261,0.649795164,41,39,6.80988E-05,0.000379876
+P122.PWY..heterolactic.fermentation,,metabolic,sick,SM,2.960174046,0.667652718,41,39,7.33535E-05,0.000394975
+PWY.5918..superpathway.of.heme.b.biosynthesis.from.glutamate,,iron,sick,SM,2.670508519,0.601527544,41,41,7.20454E-05,0.000394975
+PWY.8004..Entner.Doudoroff.pathway.I,,metabolic,sick,SM,1.8571845,0.41888351,41,41,7.33647E-05,0.000394975
+P105.PWY..TCA.cycle.IV..2.oxoglutarate.decarboxylase.,,aerobic,sick,SM,2.528493426,0.573059337,41,41,7.83555E-05,0.000416995
+PWY0.1221..putrescine.degradation.II,,amino acid,sick,SM,4.581043371,1.040660516,41,37,8.08566E-05,0.000420636
+PWY.7942..5.oxo.L.proline.metabolism,,amino acid,sick,SM,3.314645668,0.752842874,41,39,8.06617E-05,0.000420636
+PWY0.1277..3.phenylpropanoate.and.3..3.hydroxyphenyl.propanoate.degradation,,metabolic,sick,SM,3.25323287,0.741737532,41,38,8.49551E-05,0.000437047
+PWY.5692..allantoin.degradation.to.glyoxylate.II,,purine,sick,SM,3.725369979,0.8545287,41,36,9.21251E-05,0.000463629
+URDEGR.PWY..superpathway.of.allantoin.degradation.in.plants,,purine,sick,SM,3.725369979,0.8545287,41,36,9.21251E-05,0.000463629
+PWY.7446..sulfoquinovose.degradation.I,,metabolic,sick,SM,4.052432946,0.931524918,41,35,9.47718E-05,0.000471821
+GLUCARDEG.PWY..D.glucarate.degradation.I,,metabolic,sick,SM,2.94124836,0.6777329,41,41,9.78665E-05,0.000482044
+PWY.5136..fatty.acid..beta..oxidation.II..plant.peroxisome.,,aerobic,sick,SM,2.338039069,0.54639009,41,41,0.000117846,0.000574343
+P161.PWY..acetylene.degradation..anaerobic.,,metabolic,sick,SM,2.492923345,0.586555716,41,41,0.000128722,0.000614417
+PWY.5497..purine.nucleobases.degradation.II..anaerobic.,,purine,sick,SM,2.132072332,0.501477015,41,41,0.000128143,0.000614417
+FUC.RHAMCAT.PWY..superpathway.of.fucose.and.rhamnose.degradation,,metabolic,sick,SM,2.281904208,0.537597372,41,41,0.000130884,0.000618362
+PWY.6328..L.lysine.degradation.X,,amino acid,sick,SM,4.183166039,0.990450511,41,36,0.000139577,0.000652767
+PWY0.41..allantoin.degradation.IV..anaerobic.,,purine,sick,SM,4.267561822,1.014633824,41,36,0.000147192,0.0006815
+P4.PWY..superpathway.of.L.lysine..L.threonine.and.L.methionine.biosynthesis.I,,amino acid,sick,SM,1.988011036,0.473249541,41,41,0.000149555,0.000685582
+PWY0.781..aspartate.superpathway,,amino acid,sick,SM,1.962317543,0.468211217,41,41,0.000154009,0.000699079
+PWY.7269..mitochondrial.NADPH.production..yeast.,,aerobic,sick,SM,3.75423629,0.900883305,41,37,0.000165534,0.000743413
+PWY4LZ.257..superpathway.of.fermentation..Chlamydomonas.reinhardtii.,,metabolic,sick,SM,2.190055205,0.525899757,41,41,0.000166987,0.000743413
+PWY.6168..flavin.biosynthesis.III..fungi.,,aerobic,sick,SM,2.351057115,0.566778059,41,41,0.000175423,0.000773531
+PWY0.1298..superpathway.of.pyrimidine.deoxyribonucleosides.degradation,,metabolic,sick,SM,1.845881197,0.446132279,41,41,0.000181129,0.000791157
+GLYCOLYSIS.E.D..superpathway.of.glycolysis.and.the.Entner.Doudoroff.pathway,,metabolic,sick,SM,1.635243518,0.397742487,41,41,0.000196041,0.00084829
+PWY.7234..inosine.5.phosphate.biosynthesis.III,,metabolic,sick,SM,1.713104534,0.417501437,41,41,0.000200877,0.000861166
+PWY.6901..superpathway.of.glucose.and.xylose.degradation,,metabolic,sick,SM,1.497045888,0.365233682,41,41,0.000203533,0.000864547
+PWY.7117..C4.photosynthetic.carbon.assimilation.cycle..PEPCK.type,,metabolic,sick,SM,1.86785694,0.457933997,41,41,0.000216161,0.000909841
+PWY.5913..partial.TCA.cycle..obligate.autotrophs.,,aerobic,sick,SM,1.949831568,0.480662197,41,41,0.000231165,0.00096423
+PWY0.42..2.methylcitrate.cycle.I,,amino acid,sick,SM,3.128513252,0.778050381,41,39,0.000257204,0.001063263
+CARNMET.PWY..L.carnitine.degradation.I,,metabolic,sick,SM,3.834613964,0.954855518,41,37,0.000261127,0.001069926
+PWY.4041...gamma..glutamyl.cycle,,aerobic,sick,SM,1.630710004,0.409564706,41,41,0.000289361,0.001175213
+GLUDEG.I.PWY..GABA.shunt,,metabolic,sick,SM,2.854929105,0.727392425,41,41,0.000342584,0.001379273
+HEMESYN2.PWY..heme.b.biosynthesis.II..oxygen.independent.,,iron,sick,SM,1.910517648,0.489555344,41,41,0.000366056,0.001461069
+PWY.5104..L.isoleucine.biosynthesis.IV,,amino acid,sick,SM,2.911019176,0.74792891,41,38,0.000377573,0.001494157
+PWY.7616..methanol.oxidation.to.carbon.dioxide,,metabolic,sick,SM,2.815434262,0.724276663,41,38,0.000383061,0.001503026
+P221.PWY..octane.oxidation,,aerobic,sick,SM,3.731105069,0.960706159,41,39,0.00038708,0.001506034
+PWY.5189..tetrapyrrole.biosynthesis.II..from.glycine.,,iron,sick,SM,2.674574939,0.69206162,41,41,0.000409535,0.001580122
+PWY3O.4107..NAD.salvage.pathway.V..PNC.V.cycle.,,metabolic,sick,SM,2.20362994,0.576152499,41,40,0.000460718,0.001762912
+PWY0.1297..superpathway.of.purine.deoxyribonucleosides.degradation,,purine,sick,SM,1.563141848,0.409539283,41,41,0.000471564,0.001789623
+PWY.6305..superpathway.of.putrescine.biosynthesis,,amino acid,sick,SM,1.64758547,0.43239168,41,41,0.000480568,0.001808969
+ORNDEG.PWY..superpathway.of.ornithine.degradation,,amino acid,sick,SM,2.12456037,0.565630081,41,41,0.000563562,0.002087435
+PWY.7345..superpathway.of.anaerobic.sucrose.degradation,,metabolic,sick,SM,1.302779309,0.346660708,41,41,0.000560296,0.002087435
+PYRIDNUCSAL.PWY..NAD.salvage.pathway.I..PNC.VI.cycle.,,metabolic,sick,SM,2.006036606,0.535163338,41,40,0.000576295,0.002117655
+PWY.6708..ubiquinol.8.biosynthesis..early.decarboxylation.,,aerobic,sick,SM,3.587641409,0.966032426,41,32,0.00063766,0.002314579
+UBISYN.PWY..superpathway.of.ubiquinol.8.biosynthesis..early.decarboxylation.,,aerobic,sick,SM,3.577213396,0.963534498,41,32,0.000639884,0.002314579
+PWY.6285..superpathway.of.fatty.acids.biosynthesis..E..coli.,,metabolic,sick,SM,1.99191263,0.54277867,41,41,0.000724566,0.002600574
+PWY0.1477..ethanolamine.utilization,ethanolamine utilization,metabolic,sick,SM,1.939128198,0.533182115,41,41,0.000797102,0.002838908
+PWY.621..sucrose.degradation.III..sucrose.invertase.,,metabolic,sick,SM,1.520543785,0.418589092,41,41,0.00080719,0.002852891
+PWY.6922..L.N.delta..acetylornithine.biosynthesis,,metabolic,sick,SM,2.642408804,0.737670987,41,39,0.000933499,0.003274317
+PYRIDOXSYN.PWY..pyridoxal.5.phosphate.biosynthesis.I,,metabolic,sick,SM,1.992994258,0.561460776,41,41,0.001024537,0.003566622
+PWY0.845..superpathway.of.pyridoxal.5.phosphate.biosynthesis.and.salvage,,metabolic,sick,SM,1.834213897,0.521268046,41,41,0.00111917,0.003838338
+PWY.241..C4.photosynthetic.carbon.assimilation.cycle..NADP.ME.type,,metabolic,sick,SM,1.558000974,0.442721983,41,41,0.001117935,0.003838338
+PWY.6565..superpathway.of.polyamine.biosynthesis.III,superpathway of polyamine biosynthesis III,amino acid,sick,SM,-1.660553601,0.473072152,41,7,0.001146978,0.003904785
+PWY.5030..L.histidine.degradation.III,,amino acid,sick,SM,2.467640041,0.709903642,41,41,0.001263935,0.004240592
+PWY.6902..chitin.degradation.II..Vibrio.,,metabolic,sick,SM,1.823295621,0.524271032,41,41,0.001257662,0.004240592
+PWY.7873..D.erythronate.degradation.II,,metabolic,sick,SM,3.829464393,1.109650963,41,33,0.001356655,0.004518929
+LPSSYN.PWY..superpathway.of.lipopolysaccharide.biosynthesis,,metabolic,sick,SM,3.913221927,1.147763212,41,31,0.001525858,0.005046231
+PWY.7874..L.threonate.degradation,,metabolic,sick,SM,3.488738806,1.032227111,41,36,0.001658359,0.005407185
+PWY.6318..L.phenylalanine.degradation.IV..mammalian..via.side.chain.,,amino acid,sick,SM,3.134050548,0.926773379,41,27,0.001649713,0.005407185
+HEXITOLDEGSUPER.PWY..superpathway.of.hexitol.degradation..bacteria.,,metabolic,sick,SM,2.381054422,0.708772131,41,40,0.001755994,0.005646008
+PWY.6284..superpathway.of.unsaturated.fatty.acids.biosynthesis..E..coli.,,metabolic,sick,SM,1.758107141,0.523242786,41,41,0.001752977,0.005646008
+PWY.5747..2.methylcitrate.cycle.II,,amino acid,sick,SM,2.975318551,0.88961,41,38,0.001830647,0.005845447
+LIPA.CORESYN.PWY..lipid.A.core.biosynthesis..E..coli.K.12.,,metabolic,sick,SM,4.40193609,1.322454158,41,31,0.001913766,0.006068996
+PWY.6572..chondroitin.sulfate.degradation.I..bacterial.,,metabolic,sick,SM,4.066196424,1.22589486,41,26,0.001977126,0.006227273
+GALACTITOLCAT.PWY..galactitol.degradation,,metabolic,sick,SM,2.715363296,0.823874046,41,40,0.002096422,0.006558401
+PWY.7282..4.amino.2.methyl.5.diphosphomethylpyrimidine.biosynthesis.II,,metabolic,sick,SM,1.290284474,0.392707342,41,41,0.002156801,0.006702007
+PWY.5484..glycolysis.II..from.fructose.6.phosphate.,,metabolic,sick,SM,1.101677352,0.33920806,41,41,0.002394611,0.007391366
+PWY.5384..sucrose.degradation.IV..sucrose.phosphorylase.,,metabolic,sick,SM,1.424581534,0.442857879,41,41,0.002607919,0.007996467
+PWY.7315..dTDP.N.acetylthomosamine.biosynthesis,,metabolic,sick,SM,1.729517522,0.542402942,41,41,0.00281729,0.008581612
+FUCCAT.PWY..fucose.degradation,fucose degradation,metabolic,sick,SM,1.656608218,0.523719241,41,41,0.003020143,0.009139387
+PWY.7392..taxadiene.biosynthesis..engineered.,,metabolic,sick,SM,2.190590477,0.697443025,41,41,0.003208873,0.009647456
+PWY.7220..adenosine.deoxyribonucleotides.de.novo.biosynthesis.II,,purine,sick,SM,1.204474672,0.384437055,41,41,0.003277577,0.009727681
+PWY.7222..guanosine.deoxyribonucleotides.de.novo.biosynthesis.II,,purine,sick,SM,1.204474672,0.384437055,41,41,0.003277577,0.009727681
+P441.PWY..superpathway.of.N.acetylneuraminate.degradation,,metabolic,sick,SM,1.12306008,0.368030889,41,41,0.004084045,0.012044031
+PWY.7039..phosphatidate.metabolism..as.a.signaling.molecule,,metabolic,sick,SM,4.713792687,1.556017621,41,17,0.004333375,0.012698435
+SO4ASSIM.PWY..assimilatory.sulfate.reduction.I,,metabolic,sick,SM,1.464992103,0.484100096,41,41,0.004370317,0.012726143
+GALACT.GLUCUROCAT.PWY..superpathway.of.hexuronide.and.hexuronate.degradation,,metabolic,sick,SM,1.262086664,0.418099371,41,41,0.004459731,0.012905345
+GLYCOLYSIS.TCA.GLYOX.BYPASS..superpathway.of.glycolysis..pyruvate.dehydrogenase..TCA..and.glyoxylate.bypass,,aerobic,sick,SM,3.222083271,1.072856892,41,34,0.00464593,0.013360655
+PWY.7373..superpathway.of.demethylmenaquinol.6.biosynthesis.II,superpathway of demethylmenaquinol 6 biosynthesis II,aerobic,sick,SM,-1.307957282,0.438026583,41,7,0.004863845,0.013900989
+PWY.821..superpathway.of.sulfur.amino.acid.biosynthesis..Saccharomyces.cerevisiae.,,metabolic,sick,SM,1.669925011,0.560217042,41,41,0.004930985,0.014006417
+PWY.5981..CDP.diacylglycerol.biosynthesis.III,,metabolic,sick,SM,2.085212928,0.700322194,41,40,0.004974942,0.014045112
+PWY4FS.7..phosphatidylglycerol.biosynthesis.I..plastidic.,,metabolic,sick,SM,0.970685188,0.328450262,41,41,0.005275196,0.014745013
+PWY4FS.8..phosphatidylglycerol.biosynthesis.II..non.plastidic.,,metabolic,sick,SM,0.97020265,0.328377462,41,41,0.005286549,0.014745013
+PWY66.409..superpathway.of.purine.nucleotide.salvage,,purine,sick,SM,1.079443097,0.365644408,41,41,0.005319701,0.014748631
+PWY.5677..succinate.fermentation.to.butanoate,,metabolic,sick,SM,4.112252373,1.408640087,41,21,0.005800204,0.0159441
+PWY.2941..L.lysine.biosynthesis.II,,amino acid,sick,SM,1.294457963,0.443607801,41,41,0.005819769,0.0159441
+PWY66.389..phytol.degradation,,aerobic,sick,SM,2.804113743,0.98594326,41,40,0.007057124,0.019206643
+PWY.5121..superpathway.of.geranylgeranyl.diphosphate.biosynthesis.II..via.MEP.,,metabolic,sick,SM,1.222210792,0.430037566,41,41,0.007093598,0.019206643
+DENITRIFICATION.PWY..nitrate.reduction.I..denitrification.,nitrate reduction I denitrification,metabolic,sick,SM,-1.691972028,0.604160573,41,14,0.007896841,0.021257193
+POLYAMSYN.PWY..superpathway.of.polyamine.biosynthesis.I,,amino acid,sick,SM,1.222019072,0.437371861,41,41,0.008030435,0.021491858
+PWY.7858...5Z..dodecenoate.biosynthesis.II,,metabolic,sick,SM,2.063899188,0.74460865,41,41,0.008500884,0.022620168
+LIPASYN.PWY..phospholipases,,metabolic,sick,SM,2.165518095,0.782650006,41,21,0.008607728,0.022644194
+PWY0.1261..anhydromuropeptides.recycling.I,,amino acid,sick,SM,1.319945263,0.476718938,41,41,0.008565867,0.022644194
+ARG.POLYAMINE.SYN..superpathway.of.arginine.and.polyamine.biosynthesis,,amino acid,sick,SM,1.096660286,0.397313039,41,41,0.008756564,0.022905588
+AEROBACTINSYN.PWY..aerobactin.biosynthesis,aerobactin biosynthesis,pathogenic,sick,SM,3.657740672,1.327423878,41,25,0.008861598,0.023050112
+ANAEROFRUCAT.PWY..homolactic.fermentation,,metabolic,sick,SM,0.894884173,0.327261049,41,41,0.009349349,0.024182953
+PWY.6749..CMP.legionaminate.biosynthesis.I,,pathogenic,sick,SM,3.929986505,1.442287068,41,28,0.009580805,0.02464396
+PWY.6471..peptidoglycan.biosynthesis.IV..Enterococcus.faecium.,,pathogenic,sick,SM,4.224779748,1.561472639,41,19,0.010057656,0.025727596
+PWY.6125..superpathway.of.guanosine.nucleotides.de.novo.biosynthesis.II,,purine,sick,SM,0.991281746,0.370386338,41,41,0.01082795,0.027395306
+GLYCOLYSIS..glycolysis.I..from.glucose.6.phosphate.,,metabolic,sick,SM,0.882810746,0.329750521,41,41,0.010804506,0.027395306
+PWY.7210..pyrimidine.deoxyribonucleotides.biosynthesis.from.CTP,,metabolic,sick,SM,1.775330129,0.665525844,41,38,0.011069378,0.027853923
+SALVADEHYPOX.PWY..adenosine.nucleotides.degradation.II,,purine,sick,SM,1.135313747,0.430192404,41,41,0.011886475,0.029748312
+PWY.8086...S..lactate.fermentation.to.propanoate..acetate.and.hydrogen,,metabolic,sick,SM,2.760729535,1.056702996,41,35,0.012696265,0.031604144
+PWY.7197..pyrimidine.deoxyribonucleotide.phosphorylation,,metabolic,sick,SM,0.968288098,0.370995768,41,41,0.012778949,0.031639858
+PWY.6612..superpathway.of.tetrahydrofolate.biosynthesis,superpathway of tetrahydrofolate biosynthesis,metabolic,sick,SM,1.228161779,0.470990178,41,41,0.012853746,0.031655767
+PWY.7228..superpathway.of.guanosine.nucleotides.de.novo.biosynthesis.I,,purine,sick,SM,0.944694504,0.36269996,41,41,0.012949626,0.031723159
+PWY.7185..UTP.and.CTP.dephosphorylation.I,,metabolic,sick,SM,1.799878785,0.693863493,41,38,0.013294461,0.032396501
+PWY.5367..petroselinate.biosynthesis,,metabolic,sick,SM,1.42735923,0.552571409,41,41,0.013656197,0.033103767
+PWY490.3..nitrate.reduction.VI..assimilatory.,nitrate reduction VI assimilatory,metabolic,sick,SM,-1.779453829,0.691067105,41,25,0.013934433,0.033602304
+PWY.6608..guanosine.nucleotides.degradation.III,,purine,sick,SM,0.9947094,0.387659095,41,41,0.014246276,0.0341763
+SULFATE.CYS.PWY..superpathway.of.sulfate.assimilation.and.cysteine.biosynthesis,sulfate assimilation and cysteine biosynthesis,metabolic,sick,SM,1.009809321,0.395389306,41,41,0.014671267,0.035014415
+PWY.7268..cytosolic.NADPH.production..yeast.,,aerobic,sick,SM,2.69288665,1.063189673,41,15,0.015449282,0.036682142
+PWY.7385..1.3.propanediol.biosynthesis..engineered.,,metabolic,sick,SM,2.187497082,0.864623801,41,38,0.015556662,0.036748644
+PWY.6478..GDP.D.glycero..alpha..D.manno.heptose.biosynthesis,,metabolic,sick,SM,2.329497903,0.925036373,41,23,0.016007299,0.037621215
+PWY.7245..superpathway.of.NAD.NADP...NADH.NADPH.interconversion..yeast.,,aerobic,sick,SM,2.447173416,0.975803555,41,15,0.016417969,0.038391514
+PWY.7294..D.xylose.degradation.IV,,metabolic,sick,SM,3.519506735,1.406417127,41,21,0.016634164,0.038701598
+PWY.8187..L.arginine.degradation.XIII..reductive.Stickland.reaction.,,amino acid,sick,SM,1.182694426,0.474714473,41,41,0.017086719,0.039555754
+FOLSYN.PWY..superpathway.of.tetrahydrofolate.biosynthesis.and.salvage,,metabolic,sick,SM,1.119023074,0.44968413,41,41,0.017207642,0.039637504
+METH.ACETATE.PWY..methanogenesis.from.acetate,methanogenesis from acetate,metabolic,sick,SM,-2.250583817,0.925285753,41,38,0.019693521,0.045139109
+PWY.4984..urea.cycle,,purine,sick,SM,1.812573866,0.746431387,41,40,0.019882123,0.045346912
+PWY0.1586..peptidoglycan.maturation..meso.diaminopimelate.containing.,,metabolic,sick,SM,0.798629543,0.332782839,41,41,0.021274979,0.048285859
+THREOCAT.PWY..superpathway.of.L.threonine.metabolism,,amino acid,sick,SM,2.266280612,0.946410717,41,36,0.021541093,0.048569309
+GLYCOCAT.PWY..glycogen.degradation.I,,metabolic,sick,SM,1.136344691,0.474809709,41,41,0.021609671,0.048569309
+PWY.6126..superpathway.of.adenosine.nucleotides.de.novo.biosynthesis.II,,purine,sick,SM,0.835251257,0.358230517,41,41,0.024980259,0.05587372
+PWY.7208..superpathway.of.pyrimidine.nucleobases.salvage,,metabolic,sick,SM,0.8597355,0.372634077,41,41,0.026440892,0.058856408
+PWY.7323..superpathway.of.GDP.mannose.derived.O.antigen.building.blocks.biosynthesis,,metabolic,sick,SM,0.927883711,0.402881037,41,41,0.026691262,0.059129446
+PWY.7115..C4.photosynthetic.carbon.assimilation.cycle..NAD.ME.type,,metabolic,sick,SM,1.151238511,0.518868642,41,41,0.03239297,0.071080309
+PWY.6353..purine.nucleotides.degradation.II..aerobic.,,purine,sick,SM,0.779039244,0.350898444,41,41,0.032291609,0.071080309
+DAPLYSINESYN.PWY..L.lysine.biosynthesis.I,,,sick,SM,1.019128676,0.470477484,41,41,0.036473065,0.079655798
+PWY.6215..4.chlorobenzoate.degradation,,,sick,SM,2.214852405,1.034334234,41,21,0.038552691,0.083802328
+PWY.I9..L.cysteine.biosynthesis.VI..from.L.methionine.,,,sick,SM,0.723793941,0.338890144,41,41,0.039032004,0.084257324
+GLCMANNANAUT.PWY..superpathway.of.N.acetylglucosamine..N.acetylmannosamine.and.N.acetylneuraminate.degradation,,,sick,SM,0.721414374,0.337947167,41,41,0.039125971,0.084257324
+PWY.5028..L.histidine.degradation.II,,,sick,SM,2.458774875,1.16206377,41,16,0.040793586,0.087441808
+PWY.6606..guanosine.nucleotides.degradation.II,,,sick,SM,0.815191347,0.385840697,41,41,0.041074325,0.087637846
+PWY.7384..anaerobic.energy.metabolism..invertebrates..mitochondrial.,,,sick,SM,2.156974972,1.04068289,41,31,0.044860013,0.095276083
+PWY.6731..starch.degradation.III,,,sick,SM,0.881605581,0.425894826,41,41,0.045120124,0.095390947
+PWY0.1241..ADP.L.glycero..beta..D.manno.heptose.biosynthesis,,,sick,SM,0.864592744,0.419234677,41,41,0.045884233,0.096565454
+PWY0.162..superpathway.of.pyrimidine.ribonucleotides.de.novo.biosynthesis,,,sick,SM,0.899658165,0.436775552,41,41,0.04613889,0.096643248
+GALACTUROCAT.PWY..D.galacturonate.degradation.I,,,sick,SM,0.809883862,0.393570045,41,41,0.046338663,0.096643248
+PWY1ZNC.1..assimilatory.sulfate.reduction.IV,,,sick,SM,0.937857239,0.457233217,41,41,0.047011901,0.097607668
+PWY.5659..GDP.mannose.biosynthesis,,,sick,SM,0.754015867,0.371936068,41,41,0.049508147,0.102331572
+PHOSLIPSYN.PWY..superpathway.of.phospholipid.biosynthesis.I..bacteria.,,,sick,SM,0.673096075,0.332927432,41,41,0.050101518,0.103097791
+PWY.7229..superpathway.of.adenosine.nucleotides.de.novo.biosynthesis.I,,,sick,SM,0.700654632,0.34779438,41,41,0.050882692,0.104241975
+PWY.7332..superpathway.of.UDP.N.acetylglucosamine.derived.O.antigen.building.blocks.biosynthesis,,,sick,SM,-1.085833781,0.540041931,41,9,0.05131321,0.104660865
+URSIN.PWY..ureide.biosynthesis,,,sick,SM,1.629895891,0.819813619,41,11,0.053849016,0.10935129
+PWY.2221..Entner.Doudoroff.pathway.III..semi.phosphorylative.,,,sick,SM,1.491235744,0.759763322,41,11,0.056835128,0.114911197
+PWY.5088..L.glutamate.degradation.VIII..to.propanoate.,,,sick,SM,2.01166906,1.028159398,41,28,0.057585227,0.115921567
+HISDEG.PWY..L.histidine.degradation.I,,,sick,SM,1.153775037,0.591651072,41,41,0.05837949,0.117011705
+PWY.7237..myo...chiro..and.scyllo.inositol.degradation,,,sick,SM,-1.177272821,0.606541401,41,38,0.059515119,0.118773707
+P23.PWY..reductive.TCA.cycle.I,,,sick,SM,-1.975907555,1.022654866,41,36,0.06063045,0.120480251
+PWY.5345..superpathway.of.L.methionine.biosynthesis..by.sulfhydrylation.,,,sick,SM,0.710584681,0.370257683,41,41,0.06230261,0.123273968
+X3.HYDROXYPHENYLACETATE.DEGRADATION.PWY..4.hydroxyphenylacetate.degradation,,,sick,SM,1.952606853,1.019138946,41,35,0.06272437,0.123580355
+PWY.7383..anaerobic.energy.metabolism..invertebrates..cytosol.,,,sick,SM,-1.674324452,0.879208715,41,40,0.064259718,0.126068854
+PWY.6185..4.methylcatechol.degradation..ortho.cleavage.,,,sick,SM,1.653261633,0.873555135,41,18,0.065854904,0.128653252
+PWY0.1479..tRNA.processing,,,sick,SM,0.903714086,0.481723552,41,41,0.068154055,0.132585409
+PWY.841..superpathway.of.purine.nucleotides.de.novo.biosynthesis.I,,,sick,SM,0.645563215,0.34710251,41,41,0.070459467,0.136496791
+COLANSYN.PWY..colanic.acid.building.blocks.biosynthesis,,,sick,SM,0.672707667,0.366948398,41,41,0.074406576,0.143542687
+PWY.5417..catechol.degradation.III..ortho.cleavage.pathway.,,,sick,SM,2.594263915,1.425633868,41,19,0.076482877,0.146328809
+PWY.5431..aromatic.compounds.degradation.via..beta..ketoadipate,,,sick,SM,2.594263915,1.425633868,41,19,0.076482877,0.146328809
+UDPNAGSYN.PWY..UDP.N.acetyl.D.glucosamine.biosynthesis.I,,,sick,SM,0.664044038,0.365628117,41,41,0.077036555,0.146781585
+GLUCONEO.PWY..gluconeogenesis.I,,,sick,SM,0.547246341,0.304232052,41,41,0.079796093,0.151416356
+PWY.6507..4.deoxy.L.threo.hex.4.enopyranuronate.degradation,,,sick,SM,0.706536068,0.398955841,41,41,0.084382345,0.159465411
+PWY.6969..TCA.cycle.V..2.oxoglutarate.synthase.,,,sick,SM,0.790275887,0.447828833,41,41,0.085447917,0.160822706
+PWY.7389..superpathway.of.anaerobic.energy.metabolism..invertebrates.,,,sick,SM,1.766067415,1.008442099,41,30,0.087759328,0.164504328
+PWY.5464..superpathway.of.cytosolic.glycolysis..plants...pyruvate.dehydrogenase.and.TCA.cycle,,,sick,SM,2.116906156,1.229228429,41,29,0.092967062,0.173563507
+POLYAMINSYN3.PWY..superpathway.of.polyamine.biosynthesis.II,,,sick,SM,-2.469502287,1.442996094,41,34,0.094956035,0.176564835
+CATECHOL.ORTHO.CLEAVAGE.PWY..catechol.degradation.to..beta..ketoadipate,,,sick,SM,1.552129787,0.91995173,41,19,0.099551406,0.184369203
+PWY.702..L.methionine.biosynthesis.II,,,sick,SM,0.573082184,0.344066249,41,41,0.103803958,0.191479015
+GOLPDLCAT.PWY..superpathway.of.glycerol.degradation.to.1.3.propanediol,,,sick,SM,-1.321864964,0.798956383,41,40,0.106055457,0.19485586
+PWY.6906..chitin.derivatives.degradation,,,sick,SM,2.058435925,1.260564202,41,28,0.110528863,0.202272187
+PWY.7399..methylphosphonate.degradation.II,,,sick,SM,1.446239993,0.890371864,41,16,0.112365646,0.204823992
+PWY.6182..superpathway.of.salicylate.degradation,,,sick,SM,1.345968579,0.829892732,41,16,0.112891479,0.204975509
+ALLANTOINDEG.PWY..superpathway.of.allantoin.degradation.in.yeast,,,sick,SM,1.437434664,0.895312856,41,30,0.116449507,0.210609851
+PWY.5180..toluene.degradation.I..aerobic...via.o.cresol.,,,sick,SM,1.6715031,1.048066714,41,24,0.118820107,0.214061127
+PWY.7820..teichuronic.acid.biosynthesis..B..subtilis.168.,,,sick,SM,1.172905064,0.737788045,41,10,0.11996403,0.215284286
+PWY.7211..superpathway.of.pyrimidine.deoxyribonucleotides.de.novo.biosynthesis,,,sick,SM,0.897108445,0.568843645,41,41,0.122856522,0.219421657
+PWY.7356..thiamine.diphosphate.salvage.IV..yeast.,,,sick,SM,-1.35831435,0.862143439,41,40,0.123217345,0.219421657
+PWY.6823..molybdopterin.biosynthesis,,,sick,SM,-0.66317456,0.428530207,41,41,0.129806526,0.230269815
+ALL.CHORIUG_SMATE.PWY..superpathway.of.chorismate.metabolism,,,sick,SM,0.670635656,0.43902971,41,7,0.134697174,0.238033556
